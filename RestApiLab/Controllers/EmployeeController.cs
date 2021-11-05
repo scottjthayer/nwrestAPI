@@ -36,7 +36,28 @@ namespace RestApiLab.Controllers
             return result;
         }
 
+        [HttpPost("add")]
+        public Employee AddEmployee(int employeeId, string lastName, string firstName, string title, string titleOfCourtesy, string address, string city, string postalCode, int reportsTo)
+        {
+            Employee newEmployee = new Employee();
+            newEmployee.LastName = lastName;
+            newEmployee.FirstName = firstName;
+            newEmployee.FirstName = firstName;
+            newEmployee.Title = title;
+            newEmployee.TitleOfCourtesy = titleOfCourtesy;
+            newEmployee.Address = address;
+            newEmployee.City = city;
+            newEmployee.PostalCode = postalCode;
+            newEmployee.ReportsTo = reportsTo;
 
-        
+            using (northwindContext context = new northwindContext())
+            {
+                context.Employees.Add(newEmployee);
+                context.SaveChanges();
+            }
+            return newEmployee;
+
+
+        }
     }
 }

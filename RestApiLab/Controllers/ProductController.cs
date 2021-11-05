@@ -39,13 +39,21 @@ namespace RestApiLab.Controllers
             return result;
         }
 
-        //api/Product/Add?ProductName={name}&UnitPrice{price}
+        //api/Product/Add?
         [HttpPost("add")]
-        public Product CreateProduct(string name, decimal price)
+        public Product CreateProduct(int productId, string productName, int supplierId, int categoryId, string quantityPerUnit, decimal unitPrice, short unitsInStock, short unitsOnOrder, short reorderLevel, bool discontinued)
         {
             Product newProduct = new Product();
-            newProduct.ProductName = name;
-            newProduct.UnitPrice = price;
+            newProduct.ProductName = productName;
+            newProduct.SupplierId = supplierId;
+            newProduct.CategoryId = categoryId;
+            newProduct.QuantityPerUnit = quantityPerUnit;
+            newProduct.UnitPrice = unitPrice;
+            newProduct.UnitsInStock = unitsInStock;
+            newProduct.UnitsOnOrder = unitsOnOrder;
+            newProduct.ReorderLevel = reorderLevel;
+            newProduct.Discontinued = discontinued;
+
             using (northwindContext context = new northwindContext())
             {
                 context.Products.Add(newProduct);
